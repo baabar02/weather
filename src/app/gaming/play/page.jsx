@@ -1,10 +1,10 @@
-import { Add } from "./_components/Add";
+import { Right } from "./_components/Right";
 
 const Home = () => {
   return (
     <div>
       Page
-      <Add />
+      <Right />
     </div>
   );
 };
