@@ -3,6 +3,7 @@ import { Ring } from "./_components/Ring";
 import { Left } from "./play/_components/Left";
 import { Right } from "./play/_components/Right";
 import { Smile } from "lucide-react";
+import { SearchInput } from "./play/_components/Search";
 const Gaming = () => {
   console.log("Gaming");
   const styles = [
@@ -15,8 +16,11 @@ const Gaming = () => {
   return (
     <div className="flex h-screen justify-center content- center items-center relative">
       <div className="flex justify-center items-center h-screen w-screen">
-        <div className="flex-1 w-screen h-screen  bg-gray-100"></div>
-        <div className="flex-1 content-center w-screen h-screen bg-blue-800">
+        <div className="flex flex-col content-center w-[800px] h-[1200px]  bg-gray-100">
+          <SearchInput />
+          <Left/>
+        </div>
+        <div className="flex content-center w-[800px] h-[1200px] bg-blue-800">
           <Right />
         </div>
 
@@ -26,7 +30,7 @@ const Gaming = () => {
           <div className="absolute top-[67px] bg-blue-800  rounded-tl-[20px]  h-[100px] w-[100px] "></div>
 
           <div className="absolute top-[-167px] bg-gray-100 h-[100px] w-[100px] "></div>
-          <div className="absolute top-[-167px] bg-blue-800  rounded-bl-[20px]   h-[100px] w-[100px] "></div>
+          <div className="absolute top-[-167px] bg-blue-800  rounded-bl-[20px] h-[100px] w-[100px] "></div>
         </div>
       </div>
 
@@ -39,7 +43,7 @@ const Gaming = () => {
       />
     </div>
 
-    // </div>
+
   );
 };
 
