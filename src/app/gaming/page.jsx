@@ -1,60 +1,49 @@
+import { Bacasime_Antique } from "next/font/google";
+import { Ring } from "./_components/Ring";
 import { Left } from "./play/_components/Left";
 import { Right } from "./play/_components/Right";
 import { Smile } from "lucide-react";
 const Gaming = () => {
   console.log("Gaming");
+  const styles = [
+    { width: 140, height: 140, backgroundColor: "white" },
+    { width: 340, height: 340, backgroundColor: "transparent" },
+    { width: 540, height: 540, backgroundColor: "transparent" },
+    { width: 940, height: 940, backgroundColor: "transparent" },
+  ];
 
   return (
+    <div className="flex h-screen justify-center content- center items-center relative">
+      <div className="flex justify-center items-center h-screen w-screen">
+        <div className="flex-1 w-screen h-screen  bg-gray-100"></div>
+        <div className="flex-1 content-center w-screen h-screen bg-blue-800">
+          <Right />
+        </div>
 
-    <div className="flex h-screen justify-center items-center relative">
-        <div class="flex h-screen w-screen">
-          <div class="w-1/2 h-full bg-gray-100">
-          </div>
-           <div class="w-1/2 h-full bg-blue-800">
-           </div>
-             <div class="absolute 
-                top-1/2 
-                left-1/2 
-                transform -translate-x-1/2 -translate-y-1/2 
-                w-300 h-300 
-                rounded-full 
-                bg-tranparent 
-                border-1 
-                border-green-400">
-            </div>
-             <div class="absolute 
-                top-1/2 
-                left-1/2 
-                transform -translate-x-1/2 -translate-y-1/2 
-                w-200 h-200 
-                rounded-full 
-                bg-tranparent 
-                border-1 
-                border-green-400">
-            </div>
-             <div class="absolute 
-                top-1/2 
-                left-1/2 
-                transform -translate-x-1/2 -translate-y-1/2 
-                w-100 h-100 
-                rounded-full 
-                bg-gray-100 
-                border-1 
-                border-green-400">
-                <Smile  className="absolute
+        <Ring styles={styles} />
+        <div className="absolute  top-1/2 left-1/2 translate-x-1/2-translate-y-1/2">
+          <div className="absolute top-[67px] bg-gray-100  h-[100px] w-[100px] "></div>
+          <div className="absolute top-[67px] bg-blue-800  rounded-tl-[20px]  h-[100px] w-[100px] "></div>
+
+          <div className="absolute top-[-167px] bg-gray-100 h-[100px] w-[100px] "></div>
+          <div className="absolute top-[-167px] bg-blue-800  rounded-bl-[20px]   h-[100px] w-[100px] "></div>
+        </div>
+      </div>
+
+      <Smile
+        className="absolute
                 top-1/2
                 left-1/2
                 transform -translate-x-1/2 -translate-y-1/2
-                w-80 h-80"/>
-            </div>
-          </div>
+                w-30 h-30 z-51"
+      />
+    </div>
 
-  </div>
+    // </div>
   );
 };
 
 export default Gaming;
-
 
 // const sizes = [300, 200, 100];
 // {sizes.map((size, index) => (
