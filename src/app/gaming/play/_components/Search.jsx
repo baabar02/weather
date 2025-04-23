@@ -1,21 +1,14 @@
-import { Search } from "lucide-react"
+import { Search } from "lucide-react";
 
-export const SearchInput = () => {
-
-    return (
-        <div>
-            <Search 
-            className="absolute left-3 top-1/2 -translate-y-1/2 h-5 w-5 text-gray-400"
-            aria-label="Search icon"
-            />
-            <input type="text" 
-          
-            placeholder="asds"
-        
-            style={{width:"500px", height: "80px", border:"1px solid green", marginTop: 40, marginLeft:40 }}
-            >
-               
-            </input>
-        </div>
-    )
-}
+export const Input = () => {
+  return (
+    <div className="z-50 bg-white relative w-[500px] h-[80px] m-[40px] rounded-[8px] flex">
+      <Search className="absolute top-7 left-4" />
+      <input
+        className="bg-gray border pl-[50px] border-gray-300 text-gray-900 text-l rounded-lg w-full h-full"
+        type="text"
+        placeholder="search"
+      />
+    </div>
+  );
+};

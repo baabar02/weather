@@ -20,26 +20,11 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased  w-screen h-screen flex justify-center items-center relative"`}
       >
+        {/* <div className="flex flex-col content-center w-[800px] h-[1200px] rounded-bl-[20px] rounded-tl-[20px] border"></div> */}
+        {/* <div className="flex content-center w-[800px] h-[1200px] rounded-tr-[20px] rounded-br-[20px] bg-blue-800"></div> */}
         {children}
-        <div>
-        <div className="flex h-screen justify-center content- center items-center relative">
-      <div className="flex justify-center items-center h-screen w-screen">
-       
-     
-        <div className="absolute  top-1/2 left-1/2 translate-x-1/2-translate-y-1/2">
-          <div className="absolute top-[67px] bg-gray-100  h-[100px] w-[100px] "></div>
-          <div className="absolute top-[67px] bg-blue-800  rounded-tl-[20px]  h-[100px] w-[100px] "></div>
-
-          <div className="absolute top-[-167px] bg-gray-100 h-[100px] w-[100px] "></div>
-          <div className="absolute top-[-167px] bg-blue-800  rounded-bl-[20px]   h-[100px] w-[100px] "></div>
-        </div>
-      </div>
-
-   
-    </div>
-        </div>
       </body>
     </html>
   );
