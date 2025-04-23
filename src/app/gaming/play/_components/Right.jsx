@@ -1,3 +1,5 @@
+"use client";
+
 import { format } from "date-fns";
 import { MapPin, Heart, User, House } from "lucide-react";
 import Image from "next/image";
@@ -22,8 +24,9 @@ export const Right = ({ background }) => {
         {" "}
         <img src="/moon.png" alt="moon" />
       </div>
-
-      <p className="text-[190px] ml-[48px] mt-[10px">7.1 &deg;</p>
+    <div className="flex">
+      <p className="text-[190px] ml-[48px] mt-[10px">7.1&deg;</p>
+      </div>
       <p className="text-[24px] ml-[48px] mt-[-30px] ">rainy</p>
       <div className="flex mt-[50px] self-center justify-between w-[320px] h-[32px]">
         <House />
