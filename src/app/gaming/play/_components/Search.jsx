@@ -13,6 +13,7 @@ export const Search = ({ value, onChange, cityNames, oldogsod }) => {
         onChange={onChange}
       />
       {oldogsod.length != 0 && value ? (
+
         <Suggestions cityNames={cityNames} oldogsod={oldogsod} />
       ) : (
         ""

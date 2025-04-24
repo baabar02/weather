@@ -34,14 +34,15 @@ export const Container = ({ countries }) => {
   // });
   // console.log(filteredCities, "filtered");
 
-  const oldogsod = countries.flatMap((el) => {
-    const filteredCities = el.filter((city) => {
-      if (city.cityName.toLowerCase().includes(search)) {
-        return true;
-      }
-    });
-    return filteredCities;
-  });
+const oldogsod = countries.flatMap((el)=>{
+ const filteredCities = el.filter((city)=> {
+  if(city.cityName.toLowerCase().includes(search)) {
+    return true;
+  }
+ })
+ return filteredCities; 
+})
+
 
   return (
     <>
@@ -74,6 +75,16 @@ export const Container = ({ countries }) => {
     </>
   );
 };
+
+
+// const oldogsod = countries.flatMap((el) => {
+//   const filteredCities = el.filter((city) => {
+//     if (city.cityName.toLowerCase().includes(search)) {
+//       return true;
+//     }
+//   });
+//   return filteredCities;
+// });
 
 // "use client";
 

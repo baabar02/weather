@@ -1,7 +1,7 @@
 import { MapPin } from "lucide-react";
 
 export const Suggestions = ({ oldogsod }) => {
-  const firstFour = oldogsod.length >= 4 ? oldogsod.splice(0, 4) : oldogsod;
+  const firstFour = oldogsod.length >= 4 ? oldogsod.splice(0, 6) : oldogsod;
   return (
     <div className="absolute flex-col z-60">
       <div className="flex z-100 gap-4 flex-col absolute top-[85px] w-[500px] bg-white shadow-lg rounded-[8px] p-2  max-h-[200px] overflow-y-auto">
