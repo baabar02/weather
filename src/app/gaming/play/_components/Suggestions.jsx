@@ -1,17 +1,24 @@
-import { MapPin } from "lucide-react"
+import { MapPin } from "lucide-react";
 
-export const Suggestions =({cityNames})=>{
-    return <div className="flex gap-4">
-        {cityNames.map(el=>{
-            return (
-            <div className="flex gap-4 p-2 z-52">
-               <MapPin/>
-               <p>{el}</p>
+export const Suggestions = ({ oldogsod }) => {
+  const firstFour = oldogsod.length >= 4 ? oldogsod.splice(0, 4) : oldogsod;
+  return (
+    <div className="absolute flex-col z-60">
+      <div className="flex z-100 gap-4 flex-col absolute top-[85px] w-[500px] bg-white shadow-lg rounded-[8px] p-2  max-h-[200px] overflow-y-auto">
+        {firstFour.map((el) => {
+          return (
+            <div className="flex relative z-60 gap-4 rounded-[8px] bg-yellow-100 p-2 ">
+              <MapPin />
+              <p>
+                {el.cityName}, {el.countryName}
+              </p>
             </div>
-            )
+          );
         })}
+      </div>
     </div>
-}
+  );
+};
 
 // import { MapPin } from "lucide-react";
 

@@ -1,26 +1,43 @@
-
-
+import { Search } from "lucide-react";
 import { Container } from "../gaming/play/_components/Container";
 
- // https://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${cityName}
-  // https://countriesnow.space/api/v0.1/countries
+// https://api.weatherapi.com/v1/forecast.json?key=${weatherApiKey}&q=${cityName}
+// https://countriesnow.space/api/v0.1/countries
 
-export default  async function Gaming (params) {
-
-  const citiesJSON = await fetch( "https://countriesnow.space/api/v0.1/countries")
- 
-  const cities = await citiesJSON.json()
-
-  const city="Ulaanbaatar"
-
-  return (
-    
-      <Container cities={cities.data}/>
-
+export default async function Gaming() {
+  const citiesJSON = await fetch(
+    "https://countriesnow.space/api/v0.1/countries"
   );
-};
 
+  const cities = await citiesJSON.json();
 
+  const citiesWithCountryName = cities.data.map((el) => {
+    return el.cities.map((cityName) => {
+      return { cityName: cityName, countryName: el.country };
+    });
+  });
+
+  console.log(citiesWithCountryName);
+
+  return <Container countries={citiesWithCountryName} />;
+}
+
+// search =='e'
+// console.log();
+
+// const allCostumized = [
+//   [
+//     { cityName: "Erdenet", countryName: "Mongolia" },
+//     { cityName: "Ulan Bator", countryName: "Mongolia" },
+//     { cityName: "Uliyastai", countryName: "Mongolia" },
+//   ][
+//     ({ cityName: "Tokyo", countryName: "Japan" },
+//     { cityName: "Kyoto", countryName: "Japan" },
+//     { cityName: "Nara", countryName: "Japan" })
+//   ],
+// ];
+
+// cities={cities.data}
 // const sizes = [300, 200, 100];
 // {sizes.map((size, index) => (
 //   <div

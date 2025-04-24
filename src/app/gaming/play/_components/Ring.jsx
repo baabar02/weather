@@ -1,5 +1,3 @@
-
-
 export const Ring = ({ styles = [] }) => {
   return (
     <>
@@ -11,7 +9,7 @@ export const Ring = ({ styles = [] }) => {
             width: style.width,
             height: style.height,
             backgroundColor: style.backgroundColor,
-            zIndex: 50 - index,
+            zIndex: 10,
           }}
         />
       ))}
