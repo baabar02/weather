@@ -12,17 +12,16 @@ export default async function Gaming() {
   const cities = await citiesJSON.json();
 
   const citiesWithCountryName = cities.data.map((el) => {
-    return el.cities.map((cityName)=>{
-      return {cityName: cityName, countryName: el.country};
-    })
-  })
-
-
+    return el.cities.map((cityName) => {
+      return { cityName: cityName, countryName: el.country };
+    });
+  });
 
   // console.log(citiesWithCountryName);
 
   return <Container countries={citiesWithCountryName} />;
 }
+
 // const citiesWithCountryName = cities.data.map((el) => {
 //   return el.cities.map((cityName) => {
 //     return { cityName: cityName, countryName: el.country };
@@ -55,7 +54,6 @@ export default async function Gaming() {
 //     {index === sizes.length - 1 && <Smile />}
 //   </div>
 // ))}
-
 
 // const sizes = [300, 200, 100];
 // {sizes.map((size, index) => (

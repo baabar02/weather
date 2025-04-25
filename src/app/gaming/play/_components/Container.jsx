@@ -6,9 +6,12 @@ import { Left } from "./Left";
 import { Right } from "./Right";
 import { SearchIcon, Smile } from "lucide-react";
 import { Search } from "./Search";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+import { format, formatDate } from "date-fns";
 
-export const Container = ({ countries }) => {
+//api.weatherapi.com/v1/forecast.json?key=899d9c2c0f5845838dc70138240912&q=$%7BcityName%7D
+
+export const Container = ({ countries, date }) => {
   const styles = [
     { width: 140, height: 140, backgroundColor: "oklch(0.97 0 0)" },
     { width: 340, height: 340, backgroundColor: "transparent" },
@@ -16,38 +19,64 @@ export const Container = ({ countries }) => {
     { width: 940, height: 940, backgroundColor: "transparent" },
   ];
 
+  const [clickedCityName, setclickedCityName] = useState("Ulan Bator");
+  const [weather, setWeather] = useState({
+    city: "",
+    condition: "",
+    dayCelcius: "",
+    nightCelcius: "",
+  });
+
   const [search, setSearch] = useState("");
+
   const searchHandler = (event) => {
     setSearch(event.target.value);
+    // console.log(event.target.value);
   };
 
-  // const filteredCities = cities.filter((el) => {
-  //   // console.log(el.cities);
+  const clickHandler = (param) => {
+    console.log(clickHandler);
 
-  //   if (el.cities.includes(search)) {
-  //     return true;
-  //   } else {
-  //     console.log(search);
+    setclickedCityName(param);
+    setSearch("");
+  };
+  console.log(clickedCityName, "sad");
+  const oldogsod = countries.flatMap((el) => {
+    const filteredCities = el.filter((city) => {
+      if (city.cityName.toLowerCase().includes(search)) {
+        return true;
+      }
+    });
+    return filteredCities;
+  });
+  useEffect(() => {
+    const fetchWeather = async () => {
+      const resultJSOn = await fetch(
+        `https://api.weatherapi.com/v1/forecast.json?key=899d9c2c0f5845838dc70138240912&q=${clickedCityName}`
+      );
 
-  //     console.log(el.cities);
-  //   }
-  // });
-  // console.log(filteredCities, "filtered");
+      const result = await resultJSOn.json();
 
-const oldogsod = countries.flatMap((el)=>{
- const filteredCities = el.filter((city)=> {
-  if(city.cityName.toLowerCase().includes(search)) {
-    return true;
-  }
- })
- return filteredCities; 
-})
-
-
+      const todayWeather = result.forecast.forecastday[0].day;
+      const data = {
+        city: clickedCityName,
+        condition: todayWeather.condition.text,
+        dayCelcius: todayWeather.maxtemp_c,
+        nightCelcius: todayWeather.mintemp_c,
+      };
+      setWeather(data);
+    };
+    fetchWeather();
+  }, [clickedCityName]);
   return (
     <>
       <div className="flex flex-col content-center w-[800px] h-[1200px] rounded-bl-[20px] rounded-tl-[20px] bg-gray-100 ">
-        <Search onChange={searchHandler} value={search} oldogsod={oldogsod} />
+        <Search
+          onChange={searchHandler}
+          value={search}
+          oldogsod={oldogsod}
+          clickHandler={clickHandler}
+        />
         <Left />
         <div className="absolute bg-orange-500  w-[170px] h-[170px] mt-[100px] mr-[400px]  self-center  rounded-full bg-gradient-to-t from-yellow-500 to-transparent z-[1]"></div>
         <div className="absolute bg-orange-500  w-[175px] h-[175px] mt-[100px] mr-[400px]  self-center  rounded-full bg-gradient-to-t from-yellow-500 to-transparent blur-2xl "></div>
@@ -76,7 +105,18 @@ const oldogsod = countries.flatMap((el)=>{
   );
 };
 
+// const filteredCities = cities.filter((el) => {
+//   // console.log(el.cities);
 
+//   if (el.cities.includes(search)) {
+//     return true;
+//   } else {
+//     console.log(search);
+
+//     console.log(el.cities);
+//   }
+// });
+// console.log(filteredCities, "filtered");
 // const oldogsod = countries.flatMap((el) => {
 //   const filteredCities = el.filter((city) => {
 //     if (city.cityName.toLowerCase().includes(search)) {

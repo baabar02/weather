@@ -10,7 +10,7 @@ export const Left = () => {
 
   return (
     <div className="relative ml-[180px] mt-[20px] z-20 flex flex-col w-[414px] h-[828px] bg-white rounded-lg text-gray-500 shadow-md md:shadow-lg lg:shadow-xl">
-      <div className="mt-16 ml-12">{format(date, "MMMM d, yyyy")}</div>
+      <div className="mt-16 ml-12">{format(date, "MMMM, dd, yyyy")}</div>
       <div className="flex items-center ml-12">
         <p>Ulaanbaatar</p>
         <span className="ml-2">

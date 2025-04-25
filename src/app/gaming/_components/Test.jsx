@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { Right } from "../play/_components/Right";
 import { Hunt } from "../_components/Hunt";
