@@ -1,17 +1,13 @@
 "use client";
 
-// import { Bacasime_Antique } from "next/font/google";
 import { Ring } from "../_components/Ring";
 import { Left } from "./Left";
 import { Right } from "./Right";
-import { SearchIcon, Smile } from "lucide-react";
 import { Search } from "./Search";
 import { useEffect, useState } from "react";
-import { format, formatDate } from "date-fns";
+import { format } from "date-fns";
 
-//api.weatherapi.com/v1/forecast.json?key=899d9c2c0f5845838dc70138240912&q=$%7BcityName%7D
-
-export const Container = ({ countries, date }) => {
+export const Container = ({ countries }) => {
   const styles = [
     { width: 140, height: 140, backgroundColor: "oklch(0.97 0 0)" },
     { width: 340, height: 340, backgroundColor: "transparent" },
@@ -19,80 +15,98 @@ export const Container = ({ countries, date }) => {
     { width: 940, height: 940, backgroundColor: "transparent" },
   ];
 
-  const [clickedCityName, setclickedCityName] = useState("Ulan Bator");
+  const [clickedCityName, setClickedCityName] = useState("");
   const [weather, setWeather] = useState({
+    date: "",
     city: "",
     condition: "",
     dayCelcius: "",
     nightCelcius: "",
   });
 
+  console.log(weather);
+  
   const [search, setSearch] = useState("");
 
   const searchHandler = (event) => {
     setSearch(event.target.value);
-    // console.log(event.target.value);
   };
 
-  const clickHandler = (param) => {
-    console.log(clickHandler);
-
-    setclickedCityName(param);
+  const clickHandler = (cityName) => {
+    console.log(cityName);
+    setClickedCityName(cityName);
     setSearch("");
   };
-  console.log(clickedCityName, "sad");
-  const oldogsod = countries.flatMap((el) => {
-    const filteredCities = el.filter((city) => {
-      if (city.cityName.toLowerCase().includes(search)) {
-        return true;
-      }
-    });
-    return filteredCities;
-  });
+
+  const filteredCities = countries.flatMap((country) =>
+    country.filter((city) =>
+      city.cityName.toLowerCase().includes(search.toLowerCase())
+    )
+  );
+
   useEffect(() => {
     const fetchWeather = async () => {
-      const resultJSOn = await fetch(
-        `https://api.weatherapi.com/v1/forecast.json?key=899d9c2c0f5845838dc70138240912&q=${clickedCityName}`
-      );
 
-      const result = await resultJSOn.json();
+        const response = await fetch(
+          `https://api.weatherapi.com/v1/forecast.json?key=899d9c2c0f5845838dc70138240912&q=${clickedCityName}`
+        );
+  
+        const result = await response.json();
+        const todayWeather = result.forecast?.forecastday?.[0]?.day;
 
-      const todayWeather = result.forecast.forecastday[0].day;
-      const data = {
-        city: clickedCityName,
-        condition: todayWeather.condition.text,
-        dayCelcius: todayWeather.maxtemp_c,
-        nightCelcius: todayWeather.mintemp_c,
-      };
-      setWeather(data);
-    };
+        console.log(todayWeather); // Log the todayWeather object
+
+        const data = {
+          date: format(new Date(), "dd/MM/yyyy"),
+          city: clickedCityName,
+          condition: todayWeather.condition.text,
+          dayCelcius: todayWeather.maxtemp_c,
+          nightCelcius: todayWeather.mintemp_c,
+        };
+        setWeather(data);
+    
+        // setWeather({
+        //   date: "",
+        //   city: clickedCityName,
+        //   condition: "",
+        //   dayCelcius: "",
+        //   nightCelcius: "",
+        // });
+      }
+  
     fetchWeather();
   }, [clickedCityName]);
+
   return (
     <>
-      <div className="flex flex-col content-center w-[800px] h-[1200px] rounded-bl-[20px] rounded-tl-[20px] bg-gray-100 ">
+      <div className="flex flex-col items-center w-full max-w-[800px] min-h-[600px] rounded-bl-[20px] rounded-tl-[20px] bg-gray-100">
         <Search
           onChange={searchHandler}
           value={search}
-          oldogsod={oldogsod}
+          filteredCities={filteredCities}
           clickHandler={clickHandler}
         />
-        <Left />
-        <div className="absolute bg-orange-500  w-[170px] h-[170px] mt-[100px] mr-[400px]  self-center  rounded-full bg-gradient-to-t from-yellow-500 to-transparent z-[1]"></div>
-        <div className="absolute bg-orange-500  w-[175px] h-[175px] mt-[100px] mr-[400px]  self-center  rounded-full bg-gradient-to-t from-yellow-500 to-transparent blur-2xl "></div>
+        <Left weather={weather} /> 
+         <p className="text-red-500 mt-4"></p>
+        <div className="absolute w-[170px] h-[170px] mt-[100px] ml-[-400px] rounded-full bg-gradient-to-t from-yellow-500 to-transparent z-10"></div>
+        <div className="absolute w-[175px] h-[175px] mt-[100px] ml-[-400px] rounded-full bg-gradient-to-t from-yellow-500 to-transparent blur-2xl z-10"></div>
       </div>
-      <div className="flex flex-col content-center w-[800px] h-[1200px] rounded-tr-[20px] rounded-br-[20px] bg-blue-800">
-        <Right />
+      <div className="flex flex-col items-center w-full max-w-[800px] min-h-[600px] rounded-tr-[20px] rounded-br-[20px] bg-blue-800">
+        <Right weather={weather}
+         />
+        
+         
       </div>
-
       <Ring styles={styles} />
-      <div className="absolute  top-1/2 left-1/2 translate-x-1/2-translate-y-1/2">
-        <div className="absolute top-[67px] bg-gray-100  h-[100px] w-[100px] "></div>
-        <div className="absolute top-[67px] bg-blue-800  rounded-tl-[20px]  h-[100px] w-[100px] "></div>
-
-        <div className="absolute top-[-167px] bg-gray-100 h-[100px] w-[100px] "></div>
-        <div className="absolute top-[-167px] bg-blue-800  rounded-bl-[20px] h-[100px] w-[100px] "></div>
+      <div className="absolute top-1/2 left-1/2 translate-x-1/2 -translate-y-1/2">
+        <div className="absolute top-[67px] bg-gray-100 h-[100px] w-[100px]"></div>
+        <div className="absolute top-[67px] bg-blue-800 rounded-tl-[20px] h-[100px] w-[100px]"></div>
+        <div className="absolute top-[-167px] bg-gray-100 h-[100px] w-[100px]"></div>
+        <div className="absolute top-[-167px] bg-blue-800 rounded-bl-[20px] h-[100px] w-[100px]"></div>
       </div>
+    </>
+  );
+};
       {/* 
       <Smile
         className="absolute
@@ -101,9 +115,6 @@ export const Container = ({ countries, date }) => {
                 transform -translate-x-1/2 -translate-y-1/2
                 w-30 h-30 z-51"
       /> */}
-    </>
-  );
-};
 
 // const filteredCities = cities.filter((el) => {
 //   // console.log(el.cities);
