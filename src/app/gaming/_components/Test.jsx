@@ -54,12 +54,11 @@ const Test = ({ countries }) => {
   const [weather, setWeather] = useState({
     date: "",
     city: "",
-    condition: "",
-    
+    condition: "", 
     dayCelcius: "",
     nightCelcius: "",
   });
-  const [error, setError] = useState(null);
+  const [loading, setLoading] = useState(false);
 
   const huntHandler = (event) => {
     setSearch(event.target.value);
@@ -80,21 +79,14 @@ const Test = ({ countries }) => {
 
   useEffect(() => {
     const fetchWeather = async () => {
-      if (!proposedCityName) return;
-
-      try {
-        setError(null);
+    setLoading(true)
         const response = await fetch(
-          `https://api.weatherapi.com/v1/forecast.json?key=${process.env.NEXT_PUBLIC_WEATHER_API_KEY}&q=${proposedCityName}`
+          `https://api.weatherapi.com/v1/forecast.json?key=899d9c2c0f5845838dc70138240912&q=${proposedCityName}`
         );
-        if (!response.ok) throw new Error("Failed to fetch weather data");
+        
 
         const result = await response.json();
         const todayWeather = result.forecast?.forecastday?.[0]?.day;
-
-        if (!todayWeather) throw new Error("Invalid weather data");
-
-        console.log(todayWeather);
 
         const data = {
           date: format(new Date(), "dd/MM/yyyy"),
@@ -104,18 +96,8 @@ const Test = ({ countries }) => {
           nightCelcius: todayWeather.mintemp_c,
         };
         setWeather(data);
-      } catch (err) {
-        setError(err.message);
-        setWeather({
-          date: "",
-          city: proposedCityName,
-          condition: "",
-          dayCelcius: "",
-          nightCelcius: "",
-        });
-      }
+        setLoading(false)
     };
-
     fetchWeather();
   }, [proposedCityName]);
 
@@ -127,8 +109,8 @@ const Test = ({ countries }) => {
         founded={founded}
         clickHandler={clickHandler}
       />
-      <Right weather={weather} />
-      {error && <p className="text-red-500 mt-4">{error}</p>}
+      <Right weather={weather} loading={loading}/>
+      {<p className="text-red-500 mt-4"></p>}
     </div>
   );
 };

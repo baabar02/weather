@@ -27,6 +27,7 @@ export const Container = ({ countries }) => {
   console.log(weather);
   
   const [search, setSearch] = useState("");
+  const [loading,setLoading]= useState(false)
 
   const searchHandler = (event) => {
     setSearch(event.target.value);
@@ -45,6 +46,7 @@ export const Container = ({ countries }) => {
   );
 
   useEffect(() => {
+    setLoading(true)
     const fetchWeather = async () => {
 
         const response = await fetch(
@@ -73,8 +75,9 @@ export const Container = ({ countries }) => {
         //   nightCelcius: "",
         // });
       }
-  
+ 
     fetchWeather();
+    setLoading(false)
   }, [clickedCityName]);
 
   return (
@@ -86,13 +89,13 @@ export const Container = ({ countries }) => {
           filteredCities={filteredCities}
           clickHandler={clickHandler}
         />
-        <Left weather={weather} /> 
+        <Left weather={weather} loading={loading}/> 
          <p className="text-red-500 mt-4"></p>
         <div className="absolute w-[170px] h-[170px] mt-[100px] ml-[-400px] rounded-full bg-gradient-to-t from-yellow-500 to-transparent z-10"></div>
         <div className="absolute w-[175px] h-[175px] mt-[100px] ml-[-400px] rounded-full bg-gradient-to-t from-yellow-500 to-transparent blur-2xl z-10"></div>
       </div>
       <div className="flex flex-col items-center w-full max-w-[800px] min-h-[600px] rounded-tr-[20px] rounded-br-[20px] bg-blue-800">
-        <Right weather={weather}
+        <Right weather={weather} loading={loading}
          />
         
          

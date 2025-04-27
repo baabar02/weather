@@ -1,10 +1,13 @@
 "use client";
 
 import { format } from "date-fns";
-import { MapPin, House, Heart, User } from "lucide-react";
+import { MapPin, House, Heart, User, Loader } from "lucide-react";
 import Image from "next/image";
 
-export const Left = ({ weather }) => {
+export const Left = ({ weather, loading }) => {
+  if(loading) {
+    return <><Loader/></>
+  }
   const { city, dayCelcius, condition, date } = weather;
 
   const displayDate = date
@@ -51,6 +54,15 @@ export const Left = ({ weather }) => {
     </div>
   );
 };
+
+const Loading =()=>{
+  return (
+    <div className="animate-spin">
+      <Loader />
+    </div>
+  )
+}
+
 
 // "use client";
 
