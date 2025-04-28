@@ -25,9 +25,9 @@ export const Container = ({ countries }) => {
   });
 
   console.log(weather);
-  
+
   const [search, setSearch] = useState("");
-  const [loading,setLoading]= useState(false)
+  const [loading, setLoading] = useState(false);
 
   const searchHandler = (event) => {
     setSearch(event.target.value);
@@ -46,38 +46,29 @@ export const Container = ({ countries }) => {
   );
 
   useEffect(() => {
-    setLoading(true)
+    setLoading(true);
     const fetchWeather = async () => {
+      const response = await fetch(
+        `https://api.weatherapi.com/v1/forecast.json?key=899d9c2c0f5845838dc70138240912&q=${clickedCityName}`
+      );
 
-        const response = await fetch(
-          `https://api.weatherapi.com/v1/forecast.json?key=899d9c2c0f5845838dc70138240912&q=${clickedCityName}`
-        );
-  
-        const result = await response.json();
-        const todayWeather = result.forecast?.forecastday?.[0]?.day;
+      const result = await response.json();
+      const todayWeather = result.forecast?.forecastday?.[0]?.day;
 
-        console.log(todayWeather); // Log the todayWeather object
+      console.log(todayWeather);
 
-        const data = {
-          date: format(new Date(), "dd/MM/yyyy"),
-          city: clickedCityName,
-          condition: todayWeather.condition.text,
-          dayCelcius: todayWeather.maxtemp_c,
-          nightCelcius: todayWeather.mintemp_c,
-        };
-        setWeather(data);
-    
-        // setWeather({
-        //   date: "",
-        //   city: clickedCityName,
-        //   condition: "",
-        //   dayCelcius: "",
-        //   nightCelcius: "",
-        // });
-      }
- 
+      const data = {
+        date: format(new Date(), "dd/MM/yyyy"),
+        city: clickedCityName,
+        condition: todayWeather.condition.text,
+        dayCelcius: todayWeather.maxtemp_c,
+        nightCelcius: todayWeather.mintemp_c,
+      };
+      setWeather(data);
+    };
+
     fetchWeather();
-    setLoading(false)
+    setLoading(false);
   }, [clickedCityName]);
 
   return (
@@ -89,16 +80,13 @@ export const Container = ({ countries }) => {
           filteredCities={filteredCities}
           clickHandler={clickHandler}
         />
-        <Left weather={weather} loading={loading}/> 
-         <p className="text-red-500 mt-4"></p>
+        <Left weather={weather} loading={loading} />
+        <p className="text-red-500 mt-4"></p>
         <div className="absolute w-[170px] h-[170px] mt-[100px] ml-[-400px] rounded-full bg-gradient-to-t from-yellow-500 to-transparent z-10"></div>
         <div className="absolute w-[175px] h-[175px] mt-[100px] ml-[-400px] rounded-full bg-gradient-to-t from-yellow-500 to-transparent blur-2xl z-10"></div>
       </div>
       <div className="flex flex-col items-center w-full max-w-[800px] min-h-[600px] rounded-tr-[20px] rounded-br-[20px] bg-blue-800">
-        <Right weather={weather} loading={loading}
-         />
-        
-         
+        <Right weather={weather} loading={loading} />
       </div>
       <Ring styles={styles} />
       <div className="absolute top-1/2 left-1/2 translate-x-1/2 -translate-y-1/2">
@@ -110,14 +98,16 @@ export const Container = ({ countries }) => {
     </>
   );
 };
-      {/* 
+{
+  /* 
       <Smile
         className="absolute
                 top-1/2
                 left-1/2
                 transform -translate-x-1/2 -translate-y-1/2
                 w-30 h-30 z-51"
-      /> */}
+      /> */
+}
 
 // const filteredCities = cities.filter((el) => {
 //   // console.log(el.cities);

@@ -4,17 +4,21 @@ import { format } from "date-fns";
 import { MapPin, Heart, User, House, Loader } from "lucide-react";
 import Image from "next/image";
 
-export const Right = ({weather ={}, loading}) => {
-  if(loading) {
-    return <><Loader/></>
+export const Right = ({ weather = {}, loading }) => {
+  if (loading) {
+    return (
+      <>
+        <Loader />
+      </>
+    );
   }
-  const {city, date, condition, nightCelcius} = weather;
+  const { city, date, condition, nightCelcius } = weather;
   const displayDate = date
-  ? format(new Date(date.split("/").reverse().join("-")), "MMMM dd, yyyy")
-  : format(new Date(), "MMMM dd, yyyy");
+    ? format(new Date(date.split("/").reverse().join("-")), "MMMM dd, yyyy")
+    : format(new Date(), "MMMM dd, yyyy");
 
   return (
-    <div className="z-12 relative flex flex-col w-[414px] h-[828px] mt-[180px] ml-[] rounded-[12px] text-gray-300 bg-[#000000] shadow-[0_0_15px_5px_rgba(68,68,68,0.5)]">
+    <div className="z-12 relative flex flex-col w-[414px] h-[828px] mt-[180px] rounded-[12px] text-gray-300 bg-[#000000] shadow-[0_0_15px_5px_rgba(68,68,68,0.5)]">
       <div className="mt-[64px] ml-[48px]">{displayDate}</div>
       <div className="flex ml-[48px]">
         <p className="text-lg font-semibold">{city || "Unknown"}</p>
@@ -44,10 +48,10 @@ export const Right = ({weather ={}, loading}) => {
     </div>
   );
 };
-const Loading =()=>{
+const Loading = () => {
   return (
     <div className="animate-spin">
       <Loader />
     </div>
-  )
-}
+  );
+};
