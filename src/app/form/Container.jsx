@@ -51,3 +51,71 @@ const FormPage = () => {
 };
 
 export default FormPage;
+
+// "use client";
+// import { useState } from "react";
+// import ContainerStep1 from "./_components/ContainerStep1";
+// import ContainerStep2 from "./_components/ContainerStep2";
+// import ContainerStep3 from "./_components/ContainerStep3";
+
+// const FormPage = () => {
+//   const [currentStep, setCurrentStep] = useState(1);
+//   const totalSteps = 3;
+
+//   const handleNext = () => {
+//     if (currentStep < totalSteps) {
+//       setCurrentStep(currentStep + 1);
+//     } else {
+//       console.log("Form submitted!");
+//       // Add form submission logic here
+//     }
+//   };
+
+//   const handlePrevious = () => {
+//     if (currentStep > 1) {
+//       setCurrentStep(currentStep - 1);
+//     }
+//   };
+
+//   // Array of step configurations
+//   const steps = [
+//     {
+//       component: ContainerStep1,
+//       props: {
+//         isVisible: currentStep === 1,
+//         onNext: handleNext,
+//         step: `Continue ${currentStep} of ${totalSteps}`,
+//       },
+//     },
+//     {
+//       component: ContainerStep2,
+//       props: {
+//         isVisible: currentStep === 2,
+//         onNext: handleNext,
+//         onPrevious: handlePrevious,
+//         step: `Continue ${currentStep} of ${totalSteps}`,
+//       },
+//     },
+//     {
+//       component: ContainerStep3,
+//       props: {
+//         isVisible: currentStep === 3,
+//         onPrevious: handlePrevious,
+//         step: `Submit ${currentStep} of ${totalSteps}`,
+//       },
+//     },
+//   ];
+
+//   return (
+//     <div className="flex justify-center items-center min-h-screen bg-gray-100">
+//       {steps.map((step, index) => {
+//         const StepComponent = step.component;
+//         return step.props.isVisible ? (
+//           <StepComponent key={index} {...step.props} />
+//         ) : null;
+//       })}
+//     </div>
+//   );
+// };
+
+// export default FormPage;
