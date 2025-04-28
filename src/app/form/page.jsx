@@ -1,14 +1,14 @@
-"use client";
-import { animate } from "framer-motion";
-import Container from "./_components/Container";
 
-const FormPage = () => {
+
+import FormPage from "./Container";
+
+const Home = () => {
+
   return (
-    <div className="flex">
-      <Container animate={animate} />
-      {/* <Container /> */}
+    <div className="flex justify-center items-center bg-gray-100">
+      < FormPage />
     </div>
   );
 };
 
-export default FormPage;
+export default Home;
