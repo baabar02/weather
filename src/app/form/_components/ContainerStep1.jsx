@@ -32,6 +32,7 @@ const ContainerStep1 = ({ isVisible, onNext, marginBottom, step }) => {
         color="white"
         isVisible={isVisible}
         text="Continue"
+        type="Next"
         marginTop="130px"
         width="416px"
       />

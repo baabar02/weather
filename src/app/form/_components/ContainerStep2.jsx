@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Inputs from "./Inputs";
 import Button from "./Button";
 
-const ContainerStep2 = ({ isVisible, onNext, onPrevious, step }) => {
+const ContainerStep2 = ({ isVisible, onNext, onPrevious, type }) => {
   return (
     <motion.div
       className="flex flex-col items-center w-full max-w-[480px] h-[650px] gap-2 border border-green-400 p-4 bg-white rounded-lg shadow-md"
@@ -33,7 +33,8 @@ const ContainerStep2 = ({ isVisible, onNext, onPrevious, step }) => {
           backgroundColor="gray-500"
           color="gray"
           isVisible={isVisible}
-          text="< Back"
+          type="Back"
+          text="Back"
           marginTop={10}
           width={128}
         />
@@ -42,7 +43,8 @@ const ContainerStep2 = ({ isVisible, onNext, onPrevious, step }) => {
           backgroundColor="black"
           color="white"
           isVisible={isVisible}
-          // text={step}
+          text="Next"
+          type="Next"
           marginTop={10}
           width={280}
         />

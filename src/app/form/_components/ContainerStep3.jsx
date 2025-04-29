@@ -6,7 +6,7 @@ import Button from "./Button";
 const ContainerStep3 = ({ isVisible, onNext, onPrevious, step }) => {
   return (
     <motion.div
-      className="flex flex-col items-center w-full max-w-[480px] h-[650px] gap-2 border border-green-400 p-4 bg-white rounded-lg shadow-md"
+      className="flex flex-col justify-between items-center w-full max-w-[480px] h-[650px] gap-2 border border-green-400 p-4 bg-white rounded-lg shadow-md"
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: isVisible ? 0 : 1, x: isVisible ? -50 : 0 }}
       // exit={{ opacity: 0, x: -50 }}
@@ -19,13 +19,16 @@ const ContainerStep3 = ({ isVisible, onNext, onPrevious, step }) => {
         <h1 className="text-[31px] font-bold">Almost there! 🚀</h1>
         <h2 className="text-gray-600">Please provide additional details.</h2>
       </div>
-      <Inputs text="Date of birth" type="date" />
+      <div>
+      <Inputs text="Date of birth" placeholder="yyyy.mm.dd" type="date" />
       <Inputs
         text="Profile image"
         placeholder="Choose File"
         type="file"
         width="240px"
       />
+      </div>
+    
 
       <div className="flex w-[416px]">
         <Button
@@ -33,18 +36,20 @@ const ContainerStep3 = ({ isVisible, onNext, onPrevious, step }) => {
           backgroundColor="white"
           color="gray"
           isVisible={isVisible}
-          text="< Back"
+          text="Previous"
+          type="Back"
           width={128}
-          marginTop={30}
+        
         />
         <Button
           onClick={onNext}
           backgroundColor="black"
           color="white"
           isVisible={isVisible}
-          text={step}
+          text="Next"
+          type="Next"
           width={280}
-          marginTop={30}
+       
         />
       </div>
     </motion.div>
