@@ -8,8 +8,8 @@ const ContainerStep3 = ({ isVisible, onNext, onPrevious, step }) => {
     <motion.div
       className="flex flex-col items-center w-full max-w-[480px] h-[650px] gap-2 border border-green-400 p-4 bg-white rounded-lg shadow-md"
       initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
-      exit={{ opacity: 0, x: -50 }}
+      animate={{ opacity: isVisible ? 0 : 1, x: isVisible ? -50 : 0 }}
+      // exit={{ opacity: 0, x: -50 }}
       transition={{ duration: 0.3 }}
     >
       <div className="flex flex-col items-start mt-5 gap-2 w-[416px]">
@@ -19,9 +19,13 @@ const ContainerStep3 = ({ isVisible, onNext, onPrevious, step }) => {
         <h1 className="text-[31px] font-bold">Almost there! 🚀</h1>
         <h2 className="text-gray-600">Please provide additional details.</h2>
       </div>
-      <Inputs text="Date of birth*"  />
-      <Inputs text="Profile image*"
-      width="240px" />
+      <Inputs text="Date of birth" type="date" />
+      <Inputs
+        text="Profile image"
+        placeholder="Choose File"
+        type="file"
+        width="240px"
+      />
 
       <div className="flex w-[416px]">
         <Button

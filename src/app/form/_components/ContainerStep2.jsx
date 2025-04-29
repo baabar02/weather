@@ -8,8 +8,8 @@ const ContainerStep2 = ({ isVisible, onNext, onPrevious, step }) => {
     <motion.div
       className="flex flex-col items-center w-full max-w-[480px] h-[650px] gap-2 border border-green-400 p-4 bg-white rounded-lg shadow-md"
       initial={{ opacity: 0, x: 50 }}
-      animate={{ opacity: isVisible ? 1 : 0, x: isVisible ? 0 : 50 }}
-      exit={{ opacity: 0, x: -50 }}
+      animate={{ opacity: isVisible ? 0 : 1, x: isVisible ? -50 : 0 }}
+      // exit={{ opacity: 0, x: -50 }}
       transition={{ duration: 0.3 }}
     >
       <div className="flex flex-col items-start mt-[10px] gap-2 w-[416px]">
@@ -19,11 +19,14 @@ const ContainerStep2 = ({ isVisible, onNext, onPrevious, step }) => {
         <h1 className="text-[31px] font-bold">Join us! 😎</h1>
         <h2 className="text-gray-600">Please provide additional details.</h2>
       </div>
-      <Inputs text="Email*" />
-      <Inputs text="Phone number*" />
-
-      <Inputs text="Password*" />
-      <Inputs text="Confirm password*" />
+      <Inputs text="Email" placeholder={"Your Email"} type="text" />
+      <Inputs text="Phone number" placeholder={"Your number"} type="text" />
+      <Inputs text="Password" placeholder={"Your password"} type="password" />
+      <Inputs
+        text="Confirm password"
+        placeholder={"Confirm password"}
+        type="password"
+      />
       <div className="flex w-[416px]">
         <Button
           onClick={onPrevious}
@@ -39,7 +42,7 @@ const ContainerStep2 = ({ isVisible, onNext, onPrevious, step }) => {
           backgroundColor="black"
           color="white"
           isVisible={isVisible}
-          text={step}
+          // text={step}
           marginTop={10}
           width={280}
         />
