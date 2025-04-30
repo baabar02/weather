@@ -3,10 +3,16 @@ import { motion } from "framer-motion";
 import Inputs from "./Inputs";
 import Button from "./Button";
 
-const ContainerStep1 = ({ isVisible, onNext, marginBottom, step }) => {
+const ContainerStep1 = ({
+  isVisible,
+  onNext,
+
+  marginBottom,
+  step,
+}) => {
   return (
     <motion.div
-      className="flex flex-col items-center w-full max-w-[480px] h-[650px] gap-2 border border-green-400 p-4 bg-white rounded-lg shadow-md rgba(0, 0, 1, 2)"
+      className="flex flex-col items-center w-full max-w-[480px] h-[650px] gap-2 border border-green-400 p-4 bg-white rounded-lg shadow-lg"
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: isVisible ? 0 : 1, x: isVisible ? -50 : 0 }}
       exit={{ opacity: 0, x: 50 }}
@@ -22,9 +28,26 @@ const ContainerStep1 = ({ isVisible, onNext, marginBottom, step }) => {
         </h2>
       </div>
       <div className="gap-[4px]">
-        <Inputs text="First name" placeholder={"Your first name"} type="text" />
-        <Inputs text="Last name" placeholder={"Your last name"} type="text" />
-        <Inputs text="User name" placeholder={"Your user name"} type="text" />
+        <Inputs
+          name="First name"
+          text="First name"
+          placeholder={"Your first name"}
+          type="text"
+          // value={value}
+          onChange={(event) => console.log(event.target.value)}
+        />
+        <Inputs
+          name="Last name"
+          text="Last name"
+          placeholder={"Your last name"}
+          type="text"
+        />
+        <Inputs
+          name="User name"
+          text="User name"
+          placeholder={"Your user name"}
+          type="text"
+        />
       </div>
       <Button
         onClick={onNext}

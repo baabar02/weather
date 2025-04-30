@@ -11,12 +11,12 @@ const ContainerStep4 = ({ isVisible, onNext, onPrevious, step }) => {
     // exit={{ opacity: 0, x: -50 }}
     // transition={{ duration: 0.3 }}
 
-    <div className="flex flex-col items-start mt-[10px] gap-2 w-[416px]">
+    <div className="flex flex-col items-start mt-[10px] gap-2 w-[416px] shadow-lg">
       <div className="w-[60px] h-[60px]">
         <img src="/Logo.png" alt="Logo" className="object-contain" />
       </div>
       <h1 className="text-[31px] font-bold">You're All set! 😈</h1>
-      <h2 className="text-gray-600"></h2>
+      <h2 className="text-gray-600">Good luck! </h2>
     </div>
   );
 };

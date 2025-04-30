@@ -6,7 +6,7 @@ import Button from "./Button";
 const ContainerStep2 = ({ isVisible, onNext, onPrevious, type }) => {
   return (
     <motion.div
-      className="flex flex-col items-center w-full max-w-[480px] h-[650px] gap-2 border border-green-400 p-4 bg-white rounded-lg shadow-md"
+      className="flex flex-col items-center w-full max-w-[480px] h-[650px] gap-2 border border-green-400 p-4 bg-white rounded-lg shadow-lg"
       initial={{ opacity: 0, x: 50 }}
       animate={{ opacity: isVisible ? 0 : 1, x: isVisible ? -50 : 0 }}
       // exit={{ opacity: 0, x: -50 }}

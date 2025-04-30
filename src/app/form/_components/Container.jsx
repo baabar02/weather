@@ -4,11 +4,10 @@ import ContainerStep1 from "./ContainerStep1";
 import ContainerStep2 from "./ContainerStep2";
 import ContainerStep3 from "./ContainerStep3";
 import ContainerStep4 from "./ContainerStep4";
+import { Input } from "postcss";
 
 const FormPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
-
-  // const totalSteps = 3;
 
   const handleNext = () => {
     if (currentStep < totalSteps.length) {
@@ -19,6 +18,13 @@ const FormPage = () => {
   const handlePrevious = () => {
     setCurrentStep(currentStep - 1);
   };
+
+  const [firstName, setFirstName] = useState();
+  if (event.target.name === "First name") {
+    setFirstName(event.target.name);
+  }
+  const [lastName, setLastName] = useState();
+  const [userName, setUserName] = useState();
 
   const totalSteps = [
     ContainerStep1,
