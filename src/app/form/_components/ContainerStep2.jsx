@@ -3,7 +3,7 @@ import { motion } from "framer-motion";
 import Inputs from "./Inputs";
 import Button from "./Button";
 
-const ContainerStep2 = ({ isVisible, onNext, onPrevious, type }) => {
+const ContainerStep2 = ({ isVisible, onNext, onPrevious, valueChanger, formTwo, type }) => {
   return (
     <motion.div
       className="flex flex-col items-center w-full max-w-[480px] h-[650px] gap-2 border border-green-400 p-4 bg-white rounded-lg shadow-lg"
@@ -19,14 +19,38 @@ const ContainerStep2 = ({ isVisible, onNext, onPrevious, type }) => {
         <h1 className="text-[31px] font-bold">Join us! 😎</h1>
         <h2 className="text-gray-600">Please provide additional details.</h2>
       </div>
-      <Inputs text="Email" placeholder={"Your Email"} type="text" />
-      <Inputs text="Phone number" placeholder={"Your number"} type="text" />
-      <Inputs text="Password" placeholder={"Your password"} type="password" />
       <Inputs
-        text="Confirm password"
-        placeholder={"Confirm password"}
-        type="password"
-      />
+  name="Email"
+  text="Email"
+  placeholder="Your Email"
+  type="email"
+  value={formTwo.Email}
+  valueChanger={valueChanger}
+/>
+  <Inputs
+  name="Phone number"
+  text="Phone number"
+  placeholder="Your number"
+  type="tel"
+  value={formTwo.PhoneNumber}
+  valueChanger={valueChanger}
+/>
+<Inputs
+  name="Password"
+  text="Password"
+  placeholder="Your password"
+  type="password"
+  value={formTwo.Password}
+  valueChanger={valueChanger}
+/>
+<Inputs
+  name="Confirm password"
+  text="Confirm password"
+  placeholder="Confirm password"
+  type="password"
+  value={formTwo.ConfirmPassword}
+  valueChanger={valueChanger}
+/>
       <div className="flex w-[416px]">
         <Button
           onClick={onPrevious}

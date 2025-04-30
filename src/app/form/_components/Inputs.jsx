@@ -1,6 +1,6 @@
 "use client";
 
-const Inputs = ({ text, onChange, value, label, name, placeholder, type }) => {
+const Inputs = ({ text, valueChanger, value, name, placeholder, type }) => {
   return (
     <div
       className="flex-col mt-[20px] w-[416px] h-[68px] border border-green-400"
@@ -15,7 +15,7 @@ const Inputs = ({ text, onChange, value, label, name, placeholder, type }) => {
         className="w-[416px] h-[44px] rounded-[8px] border border-gray-400"
         type="text"
         placeholder={placeholder}
-        onChange={onChange}
+        onChange={valueChanger}
         value={value}
       />
     </div>
