@@ -55,6 +55,7 @@ const ContainerStep1 = ({
       </div>
       <Button
         onClick={onNext}
+        // onClick={handleAlert}
         backgroundColor="black"
         color="white"
         isVisible={isVisible}

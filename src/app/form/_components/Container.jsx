@@ -33,6 +33,11 @@ const [formTwo, setFormTwo] = useState({
   ConfirmPassword:""
 });
 
+const handleAlert = () => {
+  if(formOne.name === "") {
+    alert("required!")
+  } return;
+}
 
 const valueChanger =(event) =>{
 if(event.target.name === "First name") {
