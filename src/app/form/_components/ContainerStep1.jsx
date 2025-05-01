@@ -5,10 +5,37 @@ import Button from "./Button";
 
 const ContainerStep1 = ({
   isVisible,
-  onNext,
   valueChanger,
-  formOne
+  formOne,
+  error,
+  setError,
+  setCurrentStep,
+  currentStep,
+  totalSteps,
 }) => {
+  const stepOne = () => {
+    const validationError = {};
+    if (!formOne.firstName) {
+      validationError.firstName = "Neree bich";
+    } else if (
+      !/^[\u1800-\u18AF\u0400-\u04FF\s\d.,()-]+$/.test(formOne.firstName)
+    ) {
+      validationError.firstName = "Zovhon krileer bich";
+    }
+    if (!formOne.lastName) {
+      validationError.lastName = "Ovogoo bicheechee";
+    }
+    if (!formOne.userName) {
+      validationError.userName = "Username bicheeee";
+    }
+
+    setError(validationError);
+    // setCurrentStep((prev) => prev + 1);
+    if (Object.keys(validationError).length === 0) {
+      setCurrentStep((prev) => prev + 1);
+    }
+  };
+
   return (
     <motion.div
       className="flex flex-col items-center w-full max-w-[480px] h-[650px] gap-2 border border-green-400 p-4 bg-white rounded-lg shadow-lg"
@@ -28,38 +55,41 @@ const ContainerStep1 = ({
       </div>
       <div className="gap-[4px]">
         <Inputs
-          name="First name"
+          name="firstName"
           text="First name"
           placeholder={"Your first name"}
           type="text"
           value={formOne.firstName}
           valueChanger={valueChanger}
+          error={error.firstName}
           // onChange={(event) => console.log(event.target.value)}
         />
         <Inputs
-          name="Last name"
+          name="lastName"
           text="Last name"
           placeholder={"Your last name"}
           type="text"
           value={formOne.lastName}
           valueChanger={valueChanger}
+          error={error.lastName}
         />
         <Inputs
-          name="User name"
+          name="userName"
           text="User name"
           placeholder={"Your user name"}
           type="text"
           value={formOne.userName}
           valueChanger={valueChanger}
+          error={error.userName}
         />
       </div>
       <Button
-        onClick={onNext}
-        // onClick={handleAlert}
+        // onClick={onNext}
+        onClick={stepOne}
         backgroundColor="black"
         color="white"
         isVisible={isVisible}
-        text="Continue"
+        text={`Continue ${currentStep + 1}/${totalSteps.length - 1}`}
         type="Next"
         marginTop="130px"
         width="416px"
@@ -69,5 +99,3 @@ const ContainerStep1 = ({
 };
 
 export default ContainerStep1;
-
-

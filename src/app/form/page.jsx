@@ -1,5 +1,3 @@
-"use client";
-
 import FormPage from "./_components/Container";
 
 const Home = () => {

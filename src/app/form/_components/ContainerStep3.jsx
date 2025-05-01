@@ -3,7 +3,18 @@ import { motion } from "framer-motion";
 import Inputs from "./Inputs";
 import Button from "./Button";
 
-const ContainerStep3 = ({ isVisible, onNext, onPrevious, step }) => {
+const ContainerStep3 = ({
+  isVisible,
+  onNext,
+  onPrevious,
+  valueChanger,
+  formThree,
+  formOne,
+  setCurrentStep,
+}) => {
+  const stepThree = () => {
+    setCurrentStep((prev) => prev + 1);
+  };
   return (
     <motion.div
       className="flex flex-col justify-between items-center w-full max-w-[480px] h-[650px] gap-2 border border-green-400 p-4 bg-white rounded-lg shadow-lg"
@@ -20,12 +31,22 @@ const ContainerStep3 = ({ isVisible, onNext, onPrevious, step }) => {
         <h2 className="text-gray-600">Please provide additional details.</h2>
       </div>
       <div>
-        <Inputs text="Date of birth" placeholder="yyyy.mm.dd" type="date" />
         <Inputs
+          name="DateOfbirth"
+          text="Date of birth"
+          placeholder="yyyy.mm.dd"
+          type="date"
+          value={formOne.DateOfBirth}
+          valueChanger={valueChanger}
+        />
+        <Inputs
+          name="ProfileImage"
           text="Profile image"
           placeholder="Choose File"
           type="file"
           width="240px"
+          value={formOne.ProfileImage}
+          valueChanger={valueChanger}
         />
       </div>
 
@@ -40,7 +61,7 @@ const ContainerStep3 = ({ isVisible, onNext, onPrevious, step }) => {
           width={128}
         />
         <Button
-          onClick={onNext}
+          onClick={stepThree}
           backgroundColor="black"
           color="white"
           isVisible={isVisible}

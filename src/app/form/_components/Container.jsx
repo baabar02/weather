@@ -4,83 +4,49 @@ import ContainerStep1 from "./ContainerStep1";
 import ContainerStep2 from "./ContainerStep2";
 import ContainerStep3 from "./ContainerStep3";
 import ContainerStep4 from "./ContainerStep4";
-import { Input } from "postcss";
-import { LogIn } from "lucide-react";
 
 const FormPage = () => {
   const [currentStep, setCurrentStep] = useState(0);
-
-  const handleNext = () => {
-    if (currentStep < totalSteps.length) {
-      setCurrentStep(currentStep + 1);
-    }
-  };
+  const [error, setError] = useState({});
+  const [formOne, setFormOne] = useState({
+    firstName: "",
+    lastName: "",
+    userName: "",
+    Email: "",
+    PhoneNumber: "",
+    Password: "",
+    ConfirmPassword: "",
+    DateOfBirth: "",
+    ProfileImage: "",
+  });
 
   const handlePrevious = () => {
     setCurrentStep(currentStep - 1);
   };
 
-const [formOne,setFormOne] = useState({
-  firstName:"",
-  lastName:"",
-  userName:""
-});
+  // const handleNext = () => {
+  //   if (formOne.event.target.value.trim() === "") {
+  //     setError();
+  //     return;
+  //   }
+  //   // } else if (formOne.Email.trim() === "" && currentStep == 1) {
+  //   //   alert("adsad");
+  //   //   if (event.target.value === "") setError();
+  //   //   return;
 
-const [formTwo, setFormTwo] = useState({
-  Email:"",
-  PhoneNumber:"",
-  Password:"",
-  ConfirmPassword:""
-});
+  //   if (currentStep < totalSteps.length) {
+  //     setCurrentStep(currentStep + 1);
+  //   }
+  // };
 
-const handleAlert = () => {
-  if(formOne.name === "") {
-    alert("required!")
-  } return;
-}
+  const valueChanger = (event) => {
+    const { name, value } = event.target;
+    setFormOne((prev) => {
+      return { ...prev, [name]: value };
+    });
+  };
 
-const valueChanger =(event) =>{
-if(event.target.name === "First name") {
-  setFormOne((prev)=> {
-return {...prev, firstName:event.target.value};
-});
-
-} else if (event.target.name === "Last name") {
-setFormOne((prev)=>{
-  return {...prev, lastName:event.target.value};
-});
-} else if( event.target.name === "User name") {
-  setFormOne((prev)=> {
-    return {...prev, userName: event.target.value};
-  });
-}
-if(event.target.name === "Email") {
-  setFormTwo((prev)=> {
-    return {...prev, Email: event.target.value}
-  })
-  console.log(event.target.name);
-  
-} else if(event.target.name === "Phone number") {
-  setFormTwo((prev)=> {
-  return  {...prev, PhoneNumber: event.target.value};
-  })
-} else if(event.target.name === "Password") {
-  setFormTwo((prev)=> {
-  return  {...prev, Password: event.target.value};
-  })
-} else if(event.target.name === "ConfirmPassword") {
-  setFormTwo((prev)=> {
-  return  {...prev, ConfirmPassword: event.target.value};
-  })
-
-}
-
-};
-
-console.log(formTwo,"formTwo");
-console.log(formOne,'formOne');
-
-
+  console.log(formOne, "formOne");
 
   const totalSteps = [
     ContainerStep1,
@@ -93,19 +59,27 @@ console.log(formOne,'formOne');
   // const step = {` ${currentStep} of ${totalSteps}`}
   return (
     <div>
-      <Stepper onNext={handleNext} onPrevious={handlePrevious} valueChanger={valueChanger} formOne={formOne} formTwo={formTwo}/>
+      {JSON.stringify(formOne)}
+      <Stepper
+        // onNext={handleNext}
+        onPrevious={handlePrevious}
+        valueChanger={valueChanger}
+        formOne={formOne}
+        error={error}
+        setError={setError}
+        currentStep={currentStep}
+        totalSteps={totalSteps}
+        setCurrentStep={setCurrentStep}
+      />
     </div>
   );
 };
 
 export default FormPage;
 
-
-
-
- // const [firstName, setFirstName] = useState("");
-  // const [lastName, setLastName] = useState("");
-  // const [userName, setUserName] = useState("");
+// const [firstName, setFirstName] = useState("");
+// const [lastName, setLastName] = useState("");
+// const [userName, setUserName] = useState("");
 
 // const valueChanger =(event) =>{
 // if(event.target.name === "First name") {
@@ -115,6 +89,50 @@ export default FormPage;
 // } else if( event.target.name === "User name") {
 //   setUserName(event.target.value)
 // }
+// };
+
+// const valueChanger = (event) => {
+//   if (event.target.name.trim() === "First name") {
+//     console.log(event.target.name.trim("Firstname"));
+
+//     setFormOne((prev) => {
+//       return { ...prev, firstName: event.target.value };
+//     });
+//   } else if (event.target.name === "Last name") {
+//     setFormOne((prev) => {
+//       return { ...prev, lastName: event.target.value };
+//     });
+//   } else if (event.target.name === "User name") {
+//     setFormOne((prev) => {
+//       return { ...prev, userName: event.target.value };
+//     });
+//   }
+//   if (event.target.name === "Email") {
+//     setFormTwo((prev) => {
+//       return { ...prev, Email: event.target.value };
+//     });
+//     console.log(event.target.name);
+//   } else if (event.target.name === "Phone number") {
+//     setFormTwo((prev) => {
+//       return { ...prev, PhoneNumber: event.target.value };
+//     });
+//   } else if (event.target.name === "Password") {
+//     setFormTwo((prev) => {
+//       return { ...prev, Password: event.target.value };
+//     });
+//   } else if (event.target.name === "ConfirmPassword") {
+//     setFormTwo((prev) => {
+//       return { ...prev, ConfirmPassword: event.target.value };
+//     });
+//   } else if (event.target.name.trim() === "Date of birth") {
+//     setFormThree((prev) => {
+//       return { ...prev, DateOfBirth: event.target.value };
+//     });
+//   } else if (event.target.name.trim() === "Profile image") {
+//     setFormThree((prev) => {
+//       return { ...prev, ProfileImage: event.target.value };
+//     });
+//   }
 // };
 
 // console.log(firstName,"firsname");

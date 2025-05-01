@@ -1,6 +1,6 @@
 "use client";
 
-import { ChevronLeft, ChevronRight,type } from "lucide-react";
+import { ChevronLeft, ChevronRight, type } from "lucide-react";
 
 // import { motion } from "framer-motion";
 
@@ -12,16 +12,16 @@ const Button = ({
   marginBottom,
   marginTop,
   text,
-  type
+  type,
 }) => {
   return (
     <div className="w-[416px] h-[44px] ">
       <button
         style={{ color, backgroundColor, marginBottom, marginTop, width }}
         onClick={onClick}
-        className={`flex justify-center items-center w-[416px] h-[44px] rounded-[8px] border border-green-400 bg-${backgroundColor} ${type === "Next" ? "text-white" : "text-black"}` 
-        
-        }
+        className={`flex justify-center items-center w-[416px] h-[44px] rounded-[8px] border border-green-400 bg-${backgroundColor} ${
+          type === "Next" ? "text-white" : "text-black"
+        }`}
       >
         {type === "Back" && <ChevronLeft />}
         {text}
