@@ -21,32 +21,16 @@ const FormPage = () => {
   });
 
   const handlePrevious = () => {
-    setCurrentStep(currentStep - 1);
+    setCurrentStep((prev) => prev - 1);
   };
-
-  // const handleNext = () => {
-  //   if (formOne.event.target.value.trim() === "") {
-  //     setError();
-  //     return;
-  //   }
-  //   // } else if (formOne.Email.trim() === "" && currentStep == 1) {
-  //   //   alert("adsad");
-  //   //   if (event.target.value === "") setError();
-  //   //   return;
-
-  //   if (currentStep < totalSteps.length) {
-  //     setCurrentStep(currentStep + 1);
-  //   }
-  // };
 
   const valueChanger = (event) => {
-    const { name, value } = event.target;
-    setFormOne((prev) => {
-      return { ...prev, [name]: value };
-    });
+    const { name, value, files } = event.target;
+    setFormOne((prev) => ({
+      ...prev,
+      [name]: files ? files[0] : value, // Handle file inputs
+    }));
   };
-
-  console.log(formOne, "formOne");
 
   const totalSteps = [
     ContainerStep1,
@@ -56,12 +40,11 @@ const FormPage = () => {
   ];
 
   const Stepper = totalSteps[currentStep];
-  // const step = {` ${currentStep} of ${totalSteps}`}
   return (
     <div>
       {JSON.stringify(formOne)}
       <Stepper
-        // onNext={handleNext}
+        // isVisible={true} // Set to true for the active step
         onPrevious={handlePrevious}
         valueChanger={valueChanger}
         formOne={formOne}
@@ -76,6 +59,86 @@ const FormPage = () => {
 };
 
 export default FormPage;
+
+// "use client";
+// import { useState } from "react";
+// import ContainerStep1 from "./ContainerStep1";
+// import ContainerStep2 from "./ContainerStep2";
+// import ContainerStep3 from "./ContainerStep3";
+// import ContainerStep4 from "./ContainerStep4";
+
+// const FormPage = () => {
+//   const [currentStep, setCurrentStep] = useState(0);
+//   const [error, setError] = useState({});
+//   const [formOne, setFormOne] = useState({
+//     firstName: "",
+//     lastName: "",
+//     userName: "",
+//     Email: "",
+//     PhoneNumber: "",
+//     Password: "",
+//     ConfirmPassword: "",
+//     DateOfBirth: "",
+//     ProfileImage: "",
+//   });
+
+//   const handlePrevious = () => {
+//     setCurrentStep(currentStep - 1);
+//   };
+
+//   // const handleNext = () => {
+//   //   if (formOne.event.target.value.trim() === "") {
+//   //     setError();
+//   //     return;
+//   //   }
+//   //   // } else if (formOne.Email.trim() === "" && currentStep == 1) {
+//   //   //   alert("adsad");
+//   //   //   if (event.target.value === "") setError();
+//   //   //   return;
+
+//   //   if (currentStep < totalSteps.length) {
+//   //     setCurrentStep(currentStep + 1);
+//   //   }
+//   // };
+
+//   const valueChanger = (event) => {
+//     const { name, value } = event.target;
+//     setFormOne((prev) => {
+//       return { ...prev, [name]: value };
+//     });
+//   };
+
+//   console.log(formOne, "formOne");
+
+//   const totalSteps = [
+//     ContainerStep1,
+//     ContainerStep2,
+//     ContainerStep3,
+//     ContainerStep4,
+//   ];
+
+//   const Stepper = totalSteps[currentStep];
+
+//   return (
+//     <div>
+//       {JSON.stringify(formOne)}
+//       <Stepper
+//         // onNext={handleNext}
+//         onPrevious={handlePrevious}
+//         valueChanger={valueChanger}
+//         formOne={formOne}
+//         error={error}
+//         setError={setError}
+//         currentStep={currentStep}
+//         totalSteps={totalSteps}
+//         setCurrentStep={setCurrentStep}
+//         isVisible={true}
+//       />
+//     </div>
+//   );
+// };
+
+// export default FormPage;
 
 // const [firstName, setFirstName] = useState("");
 // const [lastName, setLastName] = useState("");
