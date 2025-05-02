@@ -1,5 +1,3 @@
-
-
 "use client";
 
 import { ChevronLeft, ChevronRight, type } from "lucide-react";
@@ -19,9 +17,9 @@ const Button = ({
   return (
     <div className="w-[416px] h-[44px] ">
       <button
-        style={{ color, backgroundColor, marginBottom, marginTop, width }}
+        style={{ color, backgroundColor, marginBottom, type, marginTop, width }}
         onClick={onClick}
-        className={`flex justify-center items-center w-[416px] h-[44px] rounded-[8px] border border-green-400 bg-${backgroundColor} ${
+        className={`flex justify-center items-center w-[416px] h-[44px] rounded-[8px] border border-green-400 shadow-lg bg-${backgroundColor} ${
           type === "Next" ? "text-white" : "text-black"
         }`}
       >

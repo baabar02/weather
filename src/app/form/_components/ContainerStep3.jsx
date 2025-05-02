@@ -13,7 +13,8 @@ const ContainerStep3 = ({
   setCurrentStep,
   currentStep,
   totalSteps,
-  height
+  setFiles,
+  clearFiles,
 }) => {
   const stepThree = () => {
     const validationError = {};
@@ -31,7 +32,9 @@ const ContainerStep3 = ({
 
     if (!formOne.ProfileImage) {
       validationError.ProfileImage = "Профайлын зураг оруулна уу.";
-    } else if (!["image/jpeg", "image/png"].includes(formOne.ProfileImage.type)) {
+    } else if (
+      !["image/jpeg", "image/png"].includes(formOne.ProfileImage.type)
+    ) {
       validationError.ProfileImage = "Зөвхөн JPEG эсвэл PNG зураг оруулна уу.";
     }
 
@@ -66,26 +69,46 @@ const ContainerStep3 = ({
           valueChanger={valueChanger}
           error={error.DateOfBirth}
         />
-        <Inputs
-          // className={``}
-          name="ProfileImage"
-          text="Profile image"
-          placeholder="Choose File"
-          type="file"
-          height={height}
-          width="240px"
-          value={undefined} // File inputs are uncontrolled
-          valueChanger={valueChanger}
-          error={error.ProfileImage}
-        />
+
+        {formOne.ProfileImage ? (
+          <div className=" w-[416px] h-[200px] object-cover flex justify-center items-center rounded bg-red-500">
+            <img
+              src={URL.createObjectURL(formOne.ProfileImage)}
+              alt="Preview"
+            />
+
+            <button
+              text="X"
+              onClick={clearFiles}
+              className="w-[40px] h-[40px] border border-green-400"
+            >
+              x
+            </button>
+          </div>
+        ) : (
+          <Inputs
+            className="object-contain"
+            isImage={true}
+            name="ProfileImage"
+            text="Profile image"
+            placeholder="Drop image"
+            type="file"
+            height="200px"
+            width="240px"
+            isBackground={true}
+            value={undefined}
+            valueChanger={valueChanger}
+            error={error.ProfileImage}
+          />
+        )}
       </div>
-      <div className="flex w-[416px] gap-4">
+      <div className="flex mt-[130px] w-[416px] gap-4">
         <Button
           onClick={onPrevious}
           backgroundColor="white"
           color="black"
-          text="Previous"
-          buttonType="Back"
+          text="Back"
+          type="Back"
           width={128}
           marginTop={40}
         />
@@ -93,9 +116,9 @@ const ContainerStep3 = ({
           onClick={stepThree}
           backgroundColor="black"
           color="white"
-          text={`Continue ${currentStep + 1}/${totalSteps.length-1}`}
-          buttonType="Next"
-          width={280}
+          text={`Continue ${currentStep + 1}/${totalSteps.length - 1}`}
+          type="Next"
+          width={274}
           marginTop={40}
         />
       </div>
@@ -104,6 +127,3 @@ const ContainerStep3 = ({
 };
 
 export default ContainerStep3;
-
-
-

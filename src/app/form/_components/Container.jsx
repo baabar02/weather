@@ -28,9 +28,19 @@ const FormPage = () => {
     const { name, value, files } = event.target;
     setFormOne((prev) => ({
       ...prev,
-      [name]: files ? files[0] : value, // Handle file inputs
+      [name]: files ? files[0] : value,
     }));
   };
+
+  const [files, setFiles] = useState();
+  const clearFiles = () => {
+    setFormOne((prev) => ({ ...prev, ProfileImage: "" }));
+  };
+
+  // setFiles((prev) => ({
+  //   ...prev,
+  //   ProfileImage: files ? files[0] : value,
+  // }));
 
   const totalSteps = [
     ContainerStep1,
@@ -53,6 +63,8 @@ const FormPage = () => {
         currentStep={currentStep}
         totalSteps={totalSteps}
         setCurrentStep={setCurrentStep}
+        setFiles={setFiles}
+        clearFiles={clearFiles}
       />
     </div>
   );
