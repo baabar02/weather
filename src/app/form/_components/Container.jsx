@@ -52,7 +52,7 @@ const FormPage = () => {
   const Stepper = totalSteps[currentStep];
   return (
     <div>
-      {JSON.stringify(formOne)}
+      {/* {JSON.stringify(formOne)} */}
       <Stepper
         // isVisible={true} // Set to true for the active step
         onPrevious={handlePrevious}
