@@ -15,11 +15,11 @@ const Button = ({
   type,
 }) => {
   return (
-    <div className="w-[416px] h-[44px] ">
+    <div className="w-full h-fit">
       <button
         style={{ color, backgroundColor, marginBottom, type, marginTop, width }}
         onClick={onClick}
-        className={`flex justify-center items-center w-[416px] h-[44px] rounded-[8px] border border-green-400 shadow-lg bg-${backgroundColor} ${
+        className={`flex justify-center items-center p-3 rounded-[8px] border border-green-400 shadow-lg bg-${backgroundColor} ${
           type === "Next" ? "text-white" : "text-black"
         }`}
       >

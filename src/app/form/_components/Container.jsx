@@ -37,11 +37,6 @@ const FormPage = () => {
     setFormOne((prev) => ({ ...prev, ProfileImage: "" }));
   };
 
-  // setFiles((prev) => ({
-  //   ...prev,
-  //   ProfileImage: files ? files[0] : value,
-  // }));
-
   const totalSteps = [
     ContainerStep1,
     ContainerStep2,
@@ -54,7 +49,6 @@ const FormPage = () => {
     <div>
       {/* {JSON.stringify(formOne)} */}
       <Stepper
-        // isVisible={true} // Set to true for the active step
         onPrevious={handlePrevious}
         valueChanger={valueChanger}
         formOne={formOne}
