@@ -78,6 +78,7 @@ const ContainerStep3 = ({
               src={URL.createObjectURL(formOne.ProfileImage)}
               alt="Preview"
               className="object-contain max-w-full max-h-full"
+              fill
             />
 
             <button

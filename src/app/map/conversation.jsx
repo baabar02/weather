@@ -10,23 +10,21 @@ export const ConversationChat = ({
 }) => {
   return (
     <div className="space-y-4">
-   
       <div>
         <h3 className="text-xl font-semibold">Conversation:</h3>
         {conversation.map((item, index) => (
-          <div key={`${item.userName}-${index}`} className="p-2">
+          <div key={`${index}`} className="p-2">
             {item.userName} : {item.msg}
           </div>
         ))}
       </div>
 
-    
       <div>
         <h3 className="text-xl font-semibold">Toonuud:</h3>
         {toonuud.map((el, index) => (
           <div key={`${el}-${index}`} className="p-2">
             {el === "goy" || el === "updated" ? (
-              <span className="text-green-500">{el}</span>
+              <span className="text-green">{el}</span>
             ) : (
               el
             )}
@@ -34,13 +32,13 @@ export const ConversationChat = ({
         ))}
         <button
           onClick={handleUpdate}
-          className="mt-2 px-4 py-2 bg-yellow-500 text-white rounded"
+          className="mt-2 px-4 py-2 bg-yellow-500 text white rounded"
         >
+          {" "}
           Update 'goy' to 'updated'
         </button>
       </div>
 
-     
       <div>
         <h3 className="text-xl font-semibold">Usegnuud:</h3>
         {usegnuud.map((el, index) => (
