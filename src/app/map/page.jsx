@@ -5,7 +5,7 @@ import { ConversationChat } from "./conversation";
 
 const MapSurah = () => {
   const [weeks, setWeeks] = useState({
-    toonuud: [1, 2, 3, 4, 5, 6, 7, "goy", 213],
+    toonuud: [1, 2, 3, 4, 5, 6, 7, "goy", 8, 9],
     usegnuud: ["a", "b", "c", "d"],
   });
 
