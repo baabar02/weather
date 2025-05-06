@@ -69,12 +69,4 @@ export const ConversationChat = ({
     </div>
   );
 };
-// <div>
-//   {conversation.map(({ userName, msg }, { index }) => {
-//     return (
-//       <div key={index}>
-//         hhh {userName} {msg}
-//       </div>
-//     );
-//   })}
-// </div>
+
